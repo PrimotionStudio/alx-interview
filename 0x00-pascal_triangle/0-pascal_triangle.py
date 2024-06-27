@@ -31,10 +31,8 @@ if __name__ != '__main__':
                 if j == 0 or j == i:
                     row.append(1)
                 else:
-                    row.append('-')
-                # print('i is', i)
-                # print('j is', j)
-                # row.append(j + 1)
+                    row.append(prev_row[j] + prev_row[j - 1])
+            prev_row = row.copy()
             triangle.append(row)
         return triangle
 
