@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""0-main.py"""
 
 if __name__ != '__main__':
 
