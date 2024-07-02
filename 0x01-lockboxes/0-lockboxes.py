@@ -1,12 +1,27 @@
 #!/usr/bin/python3
 def canUnlockAll(boxes):
+    print(boxes)
     num_of_boxes = len(boxes)
     visited = [False] * num_of_boxes
-    for box in boxes:
-        for key in box:
+    visited[0] = True
+    print(visited)
+    for box_id in range(len(boxes)):
+        box = boxes[box_id]
+        print("In box: {}".format(box))
+        if len(box) == 0:
+            visited[box_id] = True
+            continue
+        for key_id in range(len(box)):
+            key = box[key_id]
             try:
-                if box[key]:
-                    print("{} box exists, key was found".format(key))
+                # key === box
+                if boxes[key]:
+                    print("box {} exists, key was found in {}".format(boxes[key], box))
+                    visited[key] = True
             except IndexError:
-                continue
-                
+                print("box {} exists, key was not found in {}".format(boxes[key], box))
+    print(visited)
+
+    if visited == ([True] * num_of_boxes):
+        return True
+    return False
