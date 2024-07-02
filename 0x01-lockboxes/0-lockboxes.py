@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 _boxes = []
 def canUnlockAll(boxes):
-    print(boxes)
+    # print(boxes)
     global _boxes
     _boxes = boxes
     num_of_boxes = len(boxes)
     global visited
     visited = [False] * num_of_boxes
-    print(visited)
+    # print(visited)
     # visited(box, index)
     visit(boxes[0], 0)
     # for box_id in range(len(boxes)):
@@ -25,7 +25,7 @@ def canUnlockAll(boxes):
     #                 visited[key] = True
     #         except IndexError:
     #             print("box {} exists, key was not found in {}".format(boxes[key], box))
-    print(visited)
+    # print(visited)
     if visited == ([True] * num_of_boxes):
         return True
     return False
@@ -33,17 +33,18 @@ def canUnlockAll(boxes):
 def visit(box, index):
     if visited[index] == True:
         return
-    print("Visiting box: {} at index {}".format(box, index))
+    # print("Visiting box: {} at index {}".format(box, index))
     visited[index] = True
-    print("Length Box {}".format(len(box)))
+    # print("Length Box {}".format(len(box)))
 
     for key_id in range(len(box)):
         key = box[key_id]
-        print("Next Key to look at: {}".format(key))
+        # print("Next Key to look at: {}".format(key))
         try:
             # if _boxes[key]:
-            print("looking at box {}".format(_boxes[key]))
-            print("box {} exists, key was found in {}".format(_boxes[key], box))
+            # print("looking at box {}".format(_boxes[key]))
+            # print("box {} exists, key was found in {}".format(_boxes[key], box))
             visit(_boxes[key], key)
         except IndexError:
-            print("box {} exists, key was not found in {}".format(_boxes[key], box))
+            pass
+            # print("box {} exists, key was not found in {}".format(_boxes[key], box))
