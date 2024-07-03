@@ -11,9 +11,7 @@ def canUnlockAll(boxes):
     global visited
     visited = [False] * num_of_boxes
     visit(boxes[0], 0)
-    if visited == ([True] * num_of_boxes):
-        return True
-    return False
+    return visited == ([True] * num_of_boxes)
 
 
 def visit(box, index):
