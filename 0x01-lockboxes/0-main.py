@@ -25,3 +25,16 @@ print(canUnlockAll(boxes7))
 
 boxes8 = [[1], [2, 3], [3, 4, 5], [6, 7, 8], [9], [10, 11], [12, 13, 14], [15, 16, 17], [18, 19], [20, 21, 22], [23, 24, 25]]
 print(canUnlockAll(boxes8))
+
+
+if __name__ == "__main__":
+    boxes = []
+
+    keys = []
+    for n in range(1, 1000):
+        keys = []
+        for m in range(1, 1000):
+            keys.append(m)
+        boxes.append(keys)
+
+    print(canUnlockAll(boxes))
