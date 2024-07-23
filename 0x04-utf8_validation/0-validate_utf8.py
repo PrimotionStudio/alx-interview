@@ -33,7 +33,7 @@ def validUTF8(data):
         if byte[0] == '0':
             # Matches with ASCII
             # print("Matches with ASCII")
-            rest = byte[1:] # correct ASCII or UTF-8 code
+            rest = byte[1:]  # correct ASCII or UTF-8 code
             # pass
         elif byte[0:2] == '10':
             # 2nd, 3rd or 4th byte of the immediate below 3
@@ -47,7 +47,7 @@ def validUTF8(data):
             # Looping through the 2 bytes and taking
             # the code points and removing its flags
             j = 0
-            err = 0 # err flag
+            err = 0  # err flag
             code_points = ''
             while i < 2:
                 _byte = _bin[i]
@@ -64,7 +64,7 @@ def validUTF8(data):
                         # this means that in this case,
                         # the following bytes were not consistent
                         # with `10` and is generating an error
-                        err = 1 # set err flag to 1
+                        err = 1  # set err flag to 1
                         # print("the following bytes were not consistent")
                         isValid = False
                         break
@@ -76,7 +76,7 @@ def validUTF8(data):
                 pass
             i += 1
             # print("sub i is", i)
-            j = 0 # reset j just in case
+            j = 0  # reset j just in case
             # pass
         elif byte[0:4] == '1110':
             # Contains 3 bytes code points
@@ -84,7 +84,7 @@ def validUTF8(data):
             # Looping through the 3 bytes and taking
             # the code points and removing its flags
             j = 0
-            err = 0 # err flag
+            err = 0  # err flag
             code_points = ''
             while i < 3:
                 _byte = _bin[i]
@@ -101,7 +101,7 @@ def validUTF8(data):
                         # this means that in this case,
                         # the following bytes were not consistent
                         # with `10` and is generating an error
-                        err = 1 # set err flag to 1
+                        err = 1  # set err flag to 1
                         # print("the following bytes were not consistent")
                         isValid = False
                         break
@@ -114,7 +114,7 @@ def validUTF8(data):
                 pass
             i += 2
             # print("sub i is", i)
-            j = 0 # reset j just in case
+            j = 0  # reset j just in case
             # pass
         elif byte[0:5] == '11110':
             # Contains 4 bytes code points
@@ -122,7 +122,7 @@ def validUTF8(data):
             # Looping through the 4 bytes and taking
             # the code points and removing its flags
             j = 0
-            err = 0 # err flag
+            err = 0  # err flag
             code_points = ''
             while i < 4:
                 _byte = _bin[i]
@@ -139,7 +139,7 @@ def validUTF8(data):
                         # this means that in this case,
                         # the following bytes were not consistent
                         # with `10` and is generating an error
-                        err = 1 # set err flag to 1
+                        err = 1  # set err flag to 1
                         # print("the following bytes were not consistent")
                         isValid = False
                         break
@@ -152,7 +152,7 @@ def validUTF8(data):
                 pass
             i += 3
             # print("sub i is", i)
-            j = 0 # reset j just in case
+            j = 0  # reset j just in case
             # pass
         else:
             # Invalid
