@@ -1,17 +1,15 @@
-#!/usr/bin/python3
 """
-This module contains a function that
-returns the minimum number of operation
-required to copy and paste a character in a text editor
+This module checks if a number is prime
 """
+from sys import argv
 from typing import List, Tuple, Optional
 
 
-def returnPrimeFactors(n: int) -> Optional[List[int]]:
+def returnPrimeFactors(i: int, n: int) -> Optional[List[int]]:
     """
     Returns a list of prime factors of a number
     """
-    if isPrimeNumber(i):
+    if isPrimeNumber(n):
         if i % n == 0:
             first_num = i
             second_num = n / i
@@ -47,13 +45,4 @@ def isPrimeNumber(n: int) -> bool:
         i += 1
     return True
 
-def minOperations(n: int) -> int:
-    arr: List[Tuple[int]] = []
-    i: int = 2
-    while i < n / 2:
-        if i % n == 0:
-            arr.append((i, n).abs(i - (n / i)))
-    if len(arr) == 0:
-        return n
-    sorted(arr)
-    return arr[0][0] + arr[0][1]
+print(genPrimeFactors(int(argv[1])))
