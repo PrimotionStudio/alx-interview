@@ -7,16 +7,16 @@ required to copy and paste a character in a text editor
 from typing import List, Tuple, Optional
 
 
-def returnPrimeFactors(n: int) -> Optional[List[int]]:
+def getOtherNumber(factor: int, n: int) -> Optional[List[int]]:
     """
-    Returns a list of prime factors of a number
+    Returns the other number in the factor
     """
-    if isPrimeNumber(i):
-        if i % n == 0:
-            first_num = i
-            second_num = n / i
-            return [first_num, returnPrimeFactors(second_num)]
-
+    if isPrimeNumber(factor):
+        if n % factor == 0:
+            otherNumber = n / factor
+            return [factor, getOtherNumber(otherNumber, n)]
+        return[None]
+    return[None]
 
 
 def genPrimeFactors(n: int) -> List[int]:
@@ -48,12 +48,15 @@ def isPrimeNumber(n: int) -> bool:
     return True
 
 def minOperations(n: int) -> int:
-    arr: List[Tuple[int]] = []
-    i: int = 2
-    while i < n / 2:
-        if i % n == 0:
-            arr.append((i, n).abs(i - (n / i)))
-    if len(arr) == 0:
-        return n
-    sorted(arr)
-    return arr[0][0] + arr[0][1]
+    """
+    This function returns the minimum number of operations
+    required to copy and paste a character in a text editor
+    """
+    if n == 1:
+        return 0
+    primeFactors = genPrimeFactors(n)
+    operations = []
+    for factor in primeFactors:
+        operations.extend(getOtherNumber(factor, n))
+    print(operations)
+    return 1

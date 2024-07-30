@@ -4,17 +4,16 @@ This module checks if a number is prime
 from sys import argv
 from typing import List, Tuple, Optional
 
-
-def returnPrimeFactors(i: int, n: int) -> Optional[List[int]]:
+def getOtherNumber(factor: int, n: int) -> Optional[List[int]]:
     """
-    Returns a list of prime factors of a number
+    Returns the other number in the factor
     """
-    if isPrimeNumber(n):
-        if i % n == 0:
-            first_num = i
-            second_num = n / i
-            return [first_num, returnPrimeFactors(second_num)]
-
+    if isPrimeNumber(factor):
+        if n % factor == 0:
+            otherNumber = n / factor
+            return [factor, getOtherNumber(otherNumber, n)]
+        return[None]
+    return[None]
 
 
 def genPrimeFactors(n: int) -> List[int]:
@@ -45,4 +44,18 @@ def isPrimeNumber(n: int) -> bool:
         i += 1
     return True
 
-print(genPrimeFactors(int(argv[1])))
+def minOperations(n: int) -> int:
+    """
+    This function returns the minimum number of operations
+    required to copy and paste a character in a text editor
+    """
+    if n == 1:
+        return 0
+    primeFactors = genPrimeFactors(n)
+    operations = []
+    for factor in primeFactors:
+        operations.extend(getOtherNumber(factor, n))
+    print(operations)
+    return 1
+
+print(minOperations(int(argv[1])))
