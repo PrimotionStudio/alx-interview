@@ -89,7 +89,7 @@ def nqueens(n: int):
             end_of_loop_but_bt = 1
         r += 1
 
-    pprint(state)
+    print([[_["row"], _["col"]] for _ in state])
 
 
 if __name__ == "__main__":
