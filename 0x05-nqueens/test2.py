@@ -23,6 +23,7 @@ def nqueens(n: int):
     end_of_loop_but_bt = 0
 
     def _backtrack():
+        print("beginning of backtracking function")
         # try:
         c = state[-1]["col"]
         print("is", c, "==", n, "- 1")
@@ -58,6 +59,9 @@ def nqueens(n: int):
 
     r = 0
     while r < n or end_of_loop_but_bt == 1:
+        if end_of_loop_but_bt == 1:
+            end_of_loop_but_bt = 0
+            print("Backtracking at the end of the loop")
         if backtrack == 1:
             print("Need for backtracking")
             # to backtrack, i need to remove the last element i added, and reset my counter to the value it was (before i added the last element) plus 1 (+1) (before i added the last element) so that it will skip the position of the last element and go to the next
@@ -71,6 +75,8 @@ def nqueens(n: int):
         if new_r:
             r = new_r
             new_r = None
+        if state == []:
+            r = 0
         print("Current ROW:", r)
 
         print("Decision Point for Row")
