@@ -10,57 +10,86 @@ def nqueens(n: int):
     of queens on an NxN chessboard
     such that no two queens attack each other.
     """
-    col = [-1 for i in range(n)]
-    row = [-1 for i in range(n)]
+    col = []
+    row = []
     posDiag = []
     negDiag = []
-    for r in range(n):
-        print("[", end="")
-        no_bt = 0
-        for c in range(n):
-            nD = r - c  # negative diagonal
-            pD = r + c  # positive diagonal
-            if r in row:
-                x = c  # because one column has already been taken away from the row
-                # a queen is already on this row
-                # means go to the next row, but complete this
-                # board visualization first
-                while x < n:
-                    print(" (.,.) |", end="")
-                    x += 1
-                print("# r is in row", end="")
-                r += 1
-                break
+    state = []
+    backtrack = -1
+    end_of_loop_but_bt = 0
+    new_r = new_c = None
+
+    def _backtrack():
+        c = state[-1]["col"]
+        if c == n - 1:
+            col.pop()
+            row.pop()
+            posDiag.pop()
+            negDiag.pop()
+            state.pop()
+            return _backtrack()
+        r = state[-1]["row"]
+        if r == n - 1:
+            col.pop()
+            row.pop()
+            posDiag.pop()
+            negDiag.pop()
+            state.pop()
+            return _backtrack()
+        col.pop()
+        row.pop()
+        posDiag.pop()
+        negDiag.pop()
+        state.pop()
+        return (r, c + 1)
+
+    r = 0
+    while r < n or end_of_loop_but_bt == 1:
+        if end_of_loop_but_bt == 1:
+            end_of_loop_but_bt = 0
+        if backtrack == 1:
+            new_r, new_c = _backtrack()
+
+        backtrack = 1  # 1 means backtracking may be needed
+        if new_r:
+            r = new_r
+            new_r = None
+        if state == []:
+            r = 0
+        if r in row:
+            continue
+        c = 0
+        if new_c:
+            c = new_c
+            new_c = None
+        while c < n:
             if c in col:
-                print(" (.,.) #c in col |", end="")
+                c += 1
+                continue
+            nD = r - c
+            pD = r + c
+            if nD in negDiag:
+                c += 1
                 continue
             if pD in posDiag:
-                print(" (.,.) #pD in posDiag |", end="")
+                c += 1
                 continue
-            if nD in negDiag:
-                print(" (.,.) #nD in negDiag |", end="")
-                continue
-            # if r not in row and c not in col and nD not in negDiag and pD not in posDiag:
-                # print(r, "is not in", row)
-                # print(r, "is not in", col)
-            print(f" ({r},{c}) |", end="")
-            row[r] = r
-            col[c] = c
+            col.append(c)
+            row.append(r)
             negDiag.append(nD)
             posDiag.append(pD)
-            no_bt = 1
-        print("]", end="\n\n")
-    print("row")
-    pprint(row)
-    print("-----------------------------------")
-    print("col")
-    pprint(col)
-    print("-----------------------------------")
-    print("negDiag")
-    pprint(negDiag)
-    print("-----------------------------------")
-    print("posDiag")
-    pprint(posDiag)
+            state_obj = {
+                "row": r,
+                "col": c,
+            }
+            state.append(state_obj)
+            backtrack = -1  # -1 means no need for backtracking
+            break
+        if backtrack == 1 and r == n - 1:
+            end_of_loop_but_bt = 1
+        r += 1
+
+    print([[_["row"], _["col"]] for _ in state])
 
 
 if __name__ == "__main__":
