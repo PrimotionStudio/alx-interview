@@ -90,6 +90,7 @@ def nqueens(n: int):
         r += 1
 
     print([[_["row"], _["col"]] for _ in state])
+    print([[_["col"], _["row"]] for _ in state])
 
 
 if __name__ == "__main__":
@@ -99,11 +100,11 @@ if __name__ == "__main__":
     try:
         n = int(argv[1])
         if n < 4:
-            print("N must be atleast 4")
+            print("N must be at least 4")
             exit(1)
 
         nqueens(n)  # main event function
 
     except ValueError:
-        print("N must be an integer")
+        print("N must be a number")
         exit(1)
