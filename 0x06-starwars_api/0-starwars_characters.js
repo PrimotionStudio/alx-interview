@@ -12,19 +12,23 @@ const requestPromise = (url) => {
         req(url, (error, response, body) => {
             if (!error && response.statusCode == 200)
                 resolve(JSON.parse(body))
-            reject("An error occured");
+            reject(new Error("An error occured"));
         });
     });
 };
 
 const get_all_films = async () => {
-    const films = await requestPromise(`${FILM_URL}/${FILM_ID}/`);
-    const characters = films.characters;
+    try {
+        const films = await requestPromise(`${FILM_URL}/${FILM_ID}/`);
+        const characters = films.characters;
 
-    for (let index = 0; index < characters.length; index++) {
-        const character_url = characters[index];
-        const character = await requestPromise(character_url);
-        console.log(character['name']);
+        for (let index = 0; index < characters.length; index++) {
+            const character_url = characters[index];
+            const character = await requestPromise(character_url);
+            console.log(character['name']);
+        }
+    } catch (error) {
+        console.log(error);   
     }
 };
 get_all_films();
