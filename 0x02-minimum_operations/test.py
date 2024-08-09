@@ -52,10 +52,11 @@ def minOperations(n: int) -> int:
     if n == 1:
         return 0
     primeFactors = genPrimeFactors(n)
-    operations = []
-    for factor in primeFactors:
-        operations.extend(getOtherNumber(factor, n))
-    print(operations)
+    print(primeFactors)
+    # operations = []
+    # for factor in primeFactors:
+    #     operations.extend(getOtherNumber(factor, n))
+    # print(operations)
     return 1
 
 print(minOperations(int(argv[1])))
