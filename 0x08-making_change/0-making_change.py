@@ -3,6 +3,7 @@
 A more optimal solution to the making change problem.
 """
 
+
 def makeChange(coins, total):
     """
     Function to determine the minimum number
