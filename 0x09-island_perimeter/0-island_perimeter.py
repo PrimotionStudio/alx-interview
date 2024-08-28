@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 """0-island_perimeter.py"""
-from typing import List
 
 
-def island_perimeter(grid: List[List[int]]) -> int:
+def island_perimeter(grid):
     """
     This function calculates the perimeter
     of an island in a given grid.
