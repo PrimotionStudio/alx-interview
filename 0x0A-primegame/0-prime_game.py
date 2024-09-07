@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""Game of choosing Prime numbers"""
+"""Game of choosing
+Prime numbers"""
 
 
 def isWinner(x, nums):
