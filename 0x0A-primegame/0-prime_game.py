@@ -3,6 +3,7 @@
 
 
 def isWinner(x, nums):
+    """Game of choosing Prime numbers"""
     max_num = max(nums)
 
     sieve = [True] * (max_num + 1)
